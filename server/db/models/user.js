@@ -12,9 +12,13 @@ const User = db.define('user', {
   password: {
     type: Sequelize.STRING,
   },
+  imageUrl: Sequelize.STRING,
   salt: {
     type: Sequelize.STRING,
   },
+  googleId: {
+    type: Sequelize.STRING
+  }
 });
 // instance methods
 User.prototype.correctPassword = function (candidatePassword) {

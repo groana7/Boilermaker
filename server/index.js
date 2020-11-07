@@ -13,6 +13,8 @@ const passport = require('passport');
 // convention to be all caps
 const port = process.env.PORT || 3000;
 
+if (process.env.NODE_ENV === 'development') require('../secrets')
+
 passport.serializeUser((user, done) => {
   try {
     done(null, user.id);
@@ -48,7 +50,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/api', require('./api'));
-app.use('/auth', require('./auth'))
+app.use('/auth', require('./auth'));
 
 // where the static files are
 app.use(express.static(path.join(__dirname, '../public')));
